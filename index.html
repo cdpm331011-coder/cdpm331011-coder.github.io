@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouman Alam — Climate Education Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --earth: #2D4A22;
+    --moss: #4A7C3F;
+    --sage: #8BAF7C;
+    --cream: #F5F0E8;
+    --sand: #E8DCC8;
+    --amber: #C4852A;
+    --rust: #A0522D;
+    --sky: #B8D4E8;
+    --deep: #1A2E12;
+    --text: #2A2A2A;
+    --muted: #6B6B6B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45,74,34,0.1);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--earth); letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--earth);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    background: var(--earth);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    position: relative; z-index: 1;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900; color: var(--cream);
+    line-height: 1.05; margin-bottom: 1rem;
+  }
+  .hero-name em { font-style: italic; color: var(--sage); }
+  .hero-title {
+    font-size: 1rem; font-weight: 300; color: var(--sky);
+    line-height: 1.7; max-width: 380px; margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    padding: 0.75rem 1.8rem; border-radius: 2px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.25s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--amber); color: white; }
+  .btn-primary:hover { background: var(--rust); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--cream); border: 1.5px solid rgba(245,240,232,0.4); }
+  .btn-outline:hover { border-color: var(--cream); background: rgba(245,240,232,0.08); }
+
+  .hero-right {
+    background: var(--sand);
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 50%, rgba(74,124,63,0.15) 0%, transparent 60%),
+      radial-gradient(circle at 80% 20%, rgba(196,133,42,0.12) 0%, transparent 50%);
+  }
+  .hero-stats {
+    position: relative; z-index: 1;
+    padding: 4rem; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 2rem;
+    width: 100%;
+  }
+  .stat-card {
+    background: white; padding: 1.8rem;
+    border-left: 3px solid var(--moss);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    color: var(--earth); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem; color: var(--muted);
+    letter-spacing: 0.05em; margin-top: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 5rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; color: var(--earth);
+    line-height: 1.15; margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .about-image-block {
+    position: relative;
+  }
+  .about-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(145deg, var(--earth) 0%, var(--moss) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-placeholder::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .about-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 900; color: rgba(255,255,255,0.15);
+    z-index: 1;
+  }
+  .about-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--amber); color: white;
+    padding: 1.2rem 1.5rem; font-size: 0.75rem;
+    font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; max-width: 160px;
+    text-align: center;
+  }
+  .about-content p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #444; margin-bottom: 1.5rem;
+  }
+  .about-research {
+    background: var(--cream); padding: 1.5rem 1.8rem;
+    border-left: 3px solid var(--moss); margin-top: 2rem;
+  }
+  .about-research h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--moss); margin-bottom: 0.6rem;
+  }
+  .about-research p {
+    font-size: 0.92rem; color: var(--earth); font-style: italic;
+    line-height: 1.6; margin: 0;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--cream); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, var(--moss), transparent);
+  }
+  .timeline-item {
+    padding-left: 3rem; margin-bottom: 3.5rem;
+    position: relative; animation: fadeUp 0.6s ease both;
+  }
+  .timeline-dot {
+    position: absolute; left: -5px; top: 0.4rem;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--amber); border: 2px solid white;
+    box-shadow: 0 0 0 3px rgba(196,133,42,0.2);
+  }
+  .timeline-meta {
+    display: flex; gap: 1rem; align-items: baseline;
+    flex-wrap: wrap; margin-bottom: 0.4rem;
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--amber); letter-spacing: 0.08em;
+  }
+  .timeline-org {
+    font-size: 0.8rem; color: var(--muted); font-weight: 400;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--earth);
+    margin-bottom: 0.8rem;
+  }
+  .timeline-desc { list-style: none; }
+  .timeline-desc li {
+    font-size: 0.9rem; color: #555; line-height: 1.7;
+    padding: 0.25rem 0; display: flex; gap: 0.6rem;
+  }
+  .timeline-desc li::before { content: '→'; color: var(--sage); flex-shrink: 0; }
+
+  /* IMPACT */
+  #impact { background: var(--earth); color: white; }
+  #impact .section-title { color: var(--cream); }
+  #impact .section-label { color: var(--sage); }
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .impact-card {
+    background: rgba(255,255,255,0.05); padding: 2.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+  .impact-card:hover { background: rgba(255,255,255,0.09); }
+  .impact-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .impact-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; color: var(--sage);
+    line-height: 1;
+  }
+  .impact-title { font-size: 0.85rem; color: rgba(255,255,255,0.75); margin: 0.5rem 0 0.8rem; }
+  .impact-desc { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* SKILLS */
+  #skills { background: white; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .skill-group h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem;
+    color: var(--earth); margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--sand);
+  }
+  .skill-pill-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .skill-pill {
+    padding: 0.45rem 1rem; font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.03em; border-radius: 2px;
+  }
+  .pill-green { background: rgba(74,124,63,0.1); color: var(--moss); }
+  .pill-amber { background: rgba(196,133,42,0.1); color: var(--amber); }
+  .pill-earth { background: rgba(45,74,34,0.08); color: var(--earth); }
+
+  /* EDUCATION */
+  #education { background: var(--sand); }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .edu-card {
+    background: white; padding: 2rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--moss);
+    transition: transform 0.25s;
+  }
+  .edu-card:hover { transform: translateY(-4px); }
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--amber); letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--earth);
+    margin-bottom: 0.25rem;
+  }
+  .edu-institution { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; }
+  .edu-detail { font-size: 0.82rem; color: #555; line-height: 1.6; }
+
+  /* PUBLICATIONS */
+  #publications { background: white; }
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .pub-item {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 1.5rem; align-items: start;
+    padding: 1.5rem; border: 1px solid var(--sand);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .pub-item:hover { border-color: var(--sage); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .pub-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--sand);
+    line-height: 1; min-width: 70px;
+  }
+  .pub-title { font-weight: 600; color: var(--earth); margin-bottom: 0.3rem; line-height: 1.4; }
+  .pub-publisher { font-size: 0.8rem; color: var(--muted); }
+
+  /* CONFERENCES */
+  #conferences { background: var(--cream); }
+  .conf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .conf-card {
+    background: white; padding: 2rem 2.5rem;
+    border-left: 4px solid var(--amber);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .conf-event {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--earth);
+    margin-bottom: 0.4rem;
+  }
+  .conf-location { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.8rem; font-weight: 500; }
+  .conf-desc { font-size: 0.85rem; color: #555; line-height: 1.65; }
+  .conf-badge {
+    display: inline-block; margin-top: 0.8rem;
+    padding: 0.3rem 0.7rem; background: rgba(196,133,42,0.12);
+    color: var(--amber); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--deep); color: white; }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-label { color: var(--sage); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-intro { font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-item { display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start; }
+  .contact-icon { font-size: 1.1rem; margin-top: 0.1rem; }
+  .contact-info a, .contact-info span { font-size: 0.9rem; color: rgba(255,255,255,0.8); text-decoration: none; }
+  .contact-info a:hover { color: var(--sage); }
+  .refs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--cream); margin-bottom: 1.5rem;
+  }
+  .ref-card {
+    background: rgba(255,255,255,0.05); padding: 1.2rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem;
+  }
+  .ref-name { font-weight: 600; color: var(--sage); margin-bottom: 0.2rem; }
+  .ref-role { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; }
+  .ref-contact { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.3);
+    padding: 2rem 5rem; font-size: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 2rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .impact-grid, .edu-grid, .conf-grid, .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Nouman Alam</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#publications">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-tag">Climate Education · Pakistan · UCL Research</p>
+    <h1 class="hero-name">Nouman<br><em>Alam</em></h1>
+    <p class="hero-title">Climate educator, researcher, and policy advocate building systemic change in flood-affected communities across Pakistan.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">130+</div>
+        <div class="stat-label">Teachers Trained</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Districts Reached</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">600+</div>
+        <div class="stat-label">Lesson Plans Created</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">400+</div>
+        <div class="stat-label">Classrooms Observed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-image-block">
+      <div class="about-placeholder">
+        <span class="about-initials">NA</span>
+      </div>
+      <div class="about-badge">COP29 Award Winner — Greening Teaching</div>
+    </div>
+    <div class="about-content">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title" style="margin-bottom:1.5rem;">Turning climate<br>crisis into<br>classroom action</h2>
+      <p>I'm a climate educator, researcher, and institutional capacity builder working at the intersection of environmental vulnerability and public school systems in Pakistan. My career spans frontline teaching in flood-affected communities, policy advocacy, teacher development, and founding a national climate education initiative.</p>
+      <p>My doctoral research explores how teachers exercise agency in enacting Climate Change and Sustainability Education within public schools in Pakistan's most flood-vulnerable districts — a question with urgent real-world stakes.</p>
+      <div class="about-research">
+        <h4>Current Research</h4>
+        <p>"Teacher Agency and the Enactment of Climate Change and Sustainability Education in Flood-Affected Public Schools in Pakistan: A Multiple Case Study of District Rajanpur and Swat."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career Journey</p>
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">2021 – Present</span>
+        <span class="timeline-org">Climate Class Connection</span>
+      </div>
+      <div class="timeline-role">Founder & Director</div>
+      <ul class="timeline-desc">
+        <li>Founded national climate education initiative across 8+ climate-vulnerable districts in Pakistan</li>
+        <li>Led development of 600+ curriculum-aligned lesson plans (Grades 1–8), approved by the National Curriculum Council</li>
+        <li>Established teacher networks, school head forums, and district coordination mechanisms system-wide</li>
+        <li>Coordinated partnerships with Ministry of Federal Education, VVOB, EU, Global Youth Mobilization, Atlas Corps & Global Schools Forum</li>
+        <li>Represented CCC at COP29 and international education forums; won 1st place in Greening Teaching category</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">Jul 2024 – Sep 2026</span>
+        <span class="timeline-org">National Institute of Excellence in Teacher Education</span>
+      </div>
+      <div class="timeline-role">Continuous Professional Development Coach</div>
+      <ul class="timeline-desc">
+        <li>Supported implementation of national CPD programmes across 32 public schools</li>
+        <li>Trained and coached 130+ teachers through blended learning and in-class mentoring</li>
+        <li>Conducted 400+ classroom observations using structured rubrics</li>
+        <li>Co-developed school improvement plans with headteachers; prepared analytical reports for Ministry stakeholders</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">Jun – Aug 2025</span>
+        <span class="timeline-org">Federal Directorate of Education (FDE)</span>
+      </div>
+      <div class="timeline-role">Research Associate</div>
+      <ul class="timeline-desc">
+        <li>Supported federal teacher capacity-building strategy; documented high-level meetings on PD priorities</li>
+        <li>Recruited and trained 21 NUML university volunteers for school-based support</li>
+        <li>Developed evaluation rubrics, observation tools, and contributed to progress reports</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">Jan – Aug 2024</span>
+        <span class="timeline-org">Teach For All</span>
+      </div>
+      <div class="timeline-role">Education Champion</div>
+      <ul class="timeline-desc">
+        <li>Designed and implemented girls' leadership and climate action project</li>
+        <li>Integrated Gender Equality and Women's Empowerment (GEWE) principles</li>
+        <li>Presented project at Schools2030 Global Forum, Bishkek, Kyrgyzstan</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">Sep 2023 – Feb 2024</span>
+        <span class="timeline-org">Pakistan Coalition for Education</span>
+      </div>
+      <div class="timeline-role">Program Officer</div>
+      <ul class="timeline-desc">
+        <li>Built institutional capacity of AEOs, DEOs, and school heads on equity-oriented financing and climate-responsive management</li>
+        <li>Coordinated advocacy and implementation planning with 18 partner NGOs</li>
+        <li>Led preparation of annual report on climate-resilient education systems, synthesizing field evidence and policy analysis</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">Jul 2021 – Jun 2023</span>
+        <span class="timeline-org">Teach For Pakistan</span>
+      </div>
+      <div class="timeline-role">Leadership Fellow</div>
+      <ul class="timeline-desc">
+        <li>Served as Teaching Fellow in low-resource public schools serving flood-affected and migrant communities</li>
+        <li>Applied student-centered and trauma-informed teaching approaches, improving engagement and retention among vulnerable learners</li>
+        <li>Introduced free digital learning tools through community partnerships for students without internet access</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <p class="section-label">By the Numbers</p>
+  <h2 class="section-title">Measurable Impact</h2>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">🏫</div>
+      <div class="impact-number">32</div>
+      <div class="impact-title">Public Schools Supported</div>
+      <div class="impact-desc">Directly implementing CPD programmes across government schools in Pakistan</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">👩‍🏫</div>
+      <div class="impact-number">130+</div>
+      <div class="impact-title">Teachers Coached</div>
+      <div class="impact-desc">Through blended learning, in-class mentoring, and structured observation</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">📚</div>
+      <div class="impact-number">600+</div>
+      <div class="impact-title">Lesson Plans Developed</div>
+      <div class="impact-desc">Curriculum-aligned, NCC-approved resources for Grades 1–8</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🌍</div>
+      <div class="impact-number">8+</div>
+      <div class="impact-title">Districts Reached</div>
+      <div class="impact-desc">Climate-vulnerable districts across Pakistan with active climate education programmes</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🤝</div>
+      <div class="impact-number">18</div>
+      <div class="impact-title">NGO Partners Coordinated</div>
+      <div class="impact-desc">Improving alignment and reducing duplication across civil society coalitions</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🔭</div>
+      <div class="impact-number">400+</div>
+      <div class="impact-title">Classroom Observations</div>
+      <div class="impact-desc">Using structured rubrics to ensure programme fidelity and teacher growth</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Expertise</p>
+  <h2 class="section-title">Key Competencies</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Education & Pedagogy</h3>
+      <div class="skill-pill-wrap">
+        <span class="skill-pill pill-green">Teacher Training</span>
+        <span class="skill-pill pill-green">Curriculum Design</span>
+        <span class="skill-pill pill-green">Project-Based Learning</span>
+        <span class="skill-pill pill-green">Trauma-Informed Teaching</span>
+        <span class="skill-pill pill-green">Formative Assessment</span>
+        <span class="skill-pill pill-green">Inclusive Pedagogy</span>
+        <span class="skill-pill pill-green">Educational Leadership</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Policy & Programs</h3>
+      <div class="skill-pill-wrap">
+        <span class="skill-pill pill-amber">Program Design & Scale-up</span>
+        <span class="skill-pill pill-amber">Stakeholder Engagement</span>
+        <span class="skill-pill pill-amber">Policy Advocacy</span>
+        <span class="skill-pill pill-amber">Capacity Building</span>
+        <span class="skill-pill pill-amber">M&E Frameworks</span>
+        <span class="skill-pill pill-amber">Donor Reporting</span>
+        <span class="skill-pill pill-amber">Budget Oversight</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Research & Analysis</h3>
+      <div class="skill-pill-wrap">
+        <span class="skill-pill pill-earth">Qualitative Research</span>
+        <span class="skill-pill pill-earth">Quantitative Methods</span>
+        <span class="skill-pill pill-earth">ARCGIS</span>
+        <span class="skill-pill pill-earth">SPSS</span>
+        <span class="skill-pill pill-earth">R Language</span>
+        <span class="skill-pill pill-earth">XLSTAT</span>
+        <span class="skill-pill pill-earth">Data Visualization</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="skill-pill-wrap">
+        <span class="skill-pill pill-green">English</span>
+        <span class="skill-pill pill-green">Urdu</span>
+        <span class="skill-pill pill-green">Punjabi</span>
+        <span class="skill-pill pill-green">Pashto</span>
+        <span class="skill-pill pill-green">Hindi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2024–2025</div>
+      <div class="edu-degree">B.Ed (1.5 years)</div>
+      <div class="edu-institution">Allama Iqbal Open University, Islamabad</div>
+      <div class="edu-detail">76% · Focused on teaching methods, assessment, educational leadership, and research methods in education.</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2020–2022</div>
+      <div class="edu-degree">M.Phil. Environmental Sciences</div>
+      <div class="edu-institution">Quaid-I-Azam University, Islamabad</div>
+      <div class="edu-detail">CGPA 3.6/4 · Specialization in climate risk, vulnerability, and adaptation; advanced quantitative and qualitative research methods.</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2015–2019</div>
+      <div class="edu-degree">BSc Disaster Preparedness & Management</div>
+      <div class="edu-institution">University of Peshawar</div>
+      <div class="edu-detail">CGPA 3.65/4 · Final project: school safety and multi-hazard risk assessment in Peshawar using the UN-Habitat toolkit.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <p class="section-label">Knowledge Production</p>
+  <h2 class="section-title">Publications & Writing</h2>
+  <div class="pub-list">
+    <div class="pub-item">
+      <div class="pub-year">2024</div>
+      <div>
+        <div class="pub-title">Climate Class Connection: Fostering young people's climate resilience and leadership in Pakistan</div>
+        <div class="pub-publisher">Teach For All · December 2024</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-year">2024</div>
+      <div>
+        <div class="pub-title">Understanding Local Perceptions of Changing Flood Patterns: A Case Study in Lakki Marwat and Swat, Khyber Pakhtunkhwa</div>
+        <div class="pub-publisher">The Borrow Earth Project · December 2024</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-year">2023</div>
+      <div>
+        <div class="pub-title">Bridging the Education Gap: A Story of Empathy and Transformation</div>
+        <div class="pub-publisher">Medium.com · July 2023</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-year">2022</div>
+      <div>
+        <div class="pub-title">Analysis of Safety Measures in Old Government School Buildings for Multi-Hazards: A Case Study of Hashtnagri, District Peshawar</div>
+        <div class="pub-publisher">Academic Research · 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCES -->
+<section id="conferences">
+  <p class="section-label">Global Platforms</p>
+  <h2 class="section-title">International Conferences</h2>
+  <div class="conf-grid">
+    <div class="conf-card">
+      <div class="conf-event">COP29 — UN Climate Change Conference</div>
+      <div class="conf-location">🇦🇿 Baku, Azerbaijan · 2024</div>
+      <div class="conf-desc">Project presentation recognized by The Office for Climate Education (OCE) and VVOB. Showcased educational and environmental impact initiatives on an international stage.</div>
+      <span class="conf-badge">🏆 1st Place — Greening Teaching Category</span>
+    </div>
+    <div class="conf-card">
+      <div class="conf-event">Schools2030 Global Forum</div>
+      <div class="conf-location">🇰🇬 Bishkek, Kyrgyzstan · 2024</div>
+      <div class="conf-desc">Presented community project on girls' leadership and climate action to an international audience. Sponsored by Aga Foundation and Teach For All.</div>
+      <span class="conf-badge">International Presenter</span>
+    </div>
+    <div class="conf-card">
+      <div class="conf-event">Oxford University Research Showcase</div>
+      <div class="conf-location">🇬🇧 Oxford, United Kingdom</div>
+      <div class="conf-desc">Presented case study findings on climate change and education during internship with The Borrow Earth Project. Findings used in international advocacy.</div>
+      <span class="conf-badge">Research Presentation</span>
+    </div>
+    <div class="conf-card">
+      <div class="conf-event">Multi-Stakeholder Education Forums</div>
+      <div class="conf-location">🇵🇰 Pakistan — Swabi, Muzaffargarh, Islamabad</div>
+      <div class="conf-desc">Co-facilitated national training events integrating gender-sensitive and climate-resilient education into policy dialogue across government and civil society.</div>
+      <span class="conf-badge">National Policy Dialogue</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="contact-intro">Open to research collaborations, climate education partnerships, policy consultations, and speaking engagements in the field of climate, education, and community resilience.</p>
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-info"><a href="mailto:noumancdpm@gmail.com">noumancdpm@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📱</span>
+        <div class="contact-info"><span>+92 316 986 9178</span></div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🔗</span>
+        <div class="contact-info"><a href="https://linkedin.com/in/nouman-alam-3a705413a" target="_blank">linkedin.com/in/nouman-alam-3a705413a</a></div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <div class="contact-info"><span>Islamabad, Pakistan</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="refs-title">References</div>
+      <div class="ref-card">
+        <div class="ref-name">Kamran Taj</div>
+        <div class="ref-role">Regional Manager, National Institute of Excellence in Teachers Education</div>
+        <div class="ref-contact">kamran.taj@niete.pk · +92 333 337 4411</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-name">Sam Wilson</div>
+        <div class="ref-role">Project Director, Ministry of Federal Education and Professional Training, Islamabad</div>
+        <div class="ref-contact">wilsonswg@hotmail.co.uk · +92 305 965 9955</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-name">Maz Bednarczyk</div>
+        <div class="ref-role">Senior Manager, Program Learning and Impact, Cultural Vistas</div>
+        <div class="ref-contact">mbednarczyk@culturalvistas.org · +370 6463 6639</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Nouman Alam — Climate Educator & Researcher</span>
+  <span>Islamabad, Pakistan · noumancdpm@gmail.com</span>
+</footer>
+
+</body>
+</html>
